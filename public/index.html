@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+   <html lang="es">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Base de Datos</title>
+       <link rel="stylesheet" href="style.css"> <!-- Si tienes un CSS -->
+   </head>
+   <body>
+       <h1>Base de Datos</h1>
+       <h2>Agregar Contribuyente</h2>
+       <form id="contribuyenteForm">
+           <input type="text" id="nombre" placeholder="Nombre" required>
+           <input type="text" id="nit" placeholder="NIT" required>
+           <input type="text" id="telefono" placeholder="Teléfono" required>
+           <input type="text" id="numeroRecibo" placeholder="Número de Recibo" required>
+           <input type="text" id="numeroTalonario" placeholder="Número de Talonario" required>
+           <input type="text" id="descripcion" placeholder="Descripción">
+           <button type="submit">Agregar</button>
+       </form>
+       <div id="resultado"></div>
+       <script>
+           document.getElementById('contribuyenteForm').addEventListener('submit', function(event) {
+               event.preventDefault();
+               const contribuyente = {
+                   nombre: document.getElementById('nombre').value,
+                   nit: document.getElementById('nit').value,
+                   telefono: document.getElementById('telefono').value,
+                   numeroRecibo: document.getElementById('numeroRecibo').value,
+                   numeroTalonario: document.getElementById('numeroTalonario').value,
+                   descripcion: document.getElementById('descripcion').value
+               };
+               fetch('/contribuyentes', {
+                   method: 'POST',
+                   headers: {
+                       'Content-Type': 'application/json'
+                   },
+                   body: JSON.stringify(contribuyente)
+               }).then(response => response.json())
+                 .then(data => {
+                     console.log('Contribuyente agregado:', data);
+                     // Aquí puedes agregar lógica para actualizar la lista de contribuyentes
+                 });
+           });
+       </script>
+   </body>
+   </html>
