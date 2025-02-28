@@ -10,6 +10,16 @@ header {
     padding: 10px 0;
     text-align: center;
 }
+.header-content {
+    display: flex; /* Usamos flexbox para alinear el logo y el título */
+    align-items: center; /* Alinea verticalmente el logo y el texto */
+    justify-content: center; /* Centra el contenido */
+}
+.logo {
+    width: 50px; /* Ajusta el tamaño del logo según sea necesario */
+    height: auto; /* Mantiene la proporción de la imagen */
+    margin-right: 10px; /* Espacio entre el logo y el título */
+}
 nav ul {
     list-style: none;
     padding: 0;
