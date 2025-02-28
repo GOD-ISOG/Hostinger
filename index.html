@@ -3,67 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Contribuyentes</title>
-    <script>
-        const API_URL = 'https://script.google.com/macros/s/AKfycbyDfGIvqW0Wag0HCz1TTTqQ2EOC0gMbdtrcrPv8PgCLqZbzdEkFX-BHKrh59vJgjX2y/exec'; // Tu URL de Apps Script
-        async function agregar() {
-            const nombre = document.getElementById("nombre").value;
-            const apellido = document.getElementById("apellido").value;
-            const email = document.getElementById("email").value;
-            const telefono = document.getElementById("telefono").value;
-            const response = await fetch(`${API_URL}?action=agregarRegistro&nombre=${encodeURIComponent(nombre)}&apellido=${encodeURIComponent(apellido)}&email=${encodeURIComponent(email)}&telefono=${encodeURIComponent(telefono)}`, {
-                method: 'GET'
-            });
-            const result = await response.text();
-            alert(result); // Muestra el resultado de la operación
-            document.getElementById("formulario").reset();
-            obtenerRegistros(); // Cargar registros después de agregar uno nuevo
-        }
-        async function obtenerRegistros() {
-            const response = await fetch(`${API_URL}?action=obtenerRegistros`, {
-                method: 'GET'
-            });
-            const registros = await response.json();
-            mostrarRegistros(registros);
-        }
-        function mostrarRegistros(registros) {
-            const tabla = document.getElementById("tablaRegistros").getElementsByTagName('tbody')[0];
-            tabla.innerHTML = ""; // Limpiar tabla antes de mostrar registros
-            registros.forEach((registro, index) => {
-                const fila = document.createElement("tr");
-                fila.innerHTML = `<td>${index + 1}</td><td>${registro[0]}</td><td>${registro[1]}</td><td>${registro[2]}</td><td>${registro[3]}</td>`;
-                tabla.appendChild(fila);
-            });
-        }
-    </script>
+    <link rel="stylesheet" href="styles.css">
+    <title>Contribuyentes</title>
 </head>
 <body>
-    <h1>Agregar Contribuyente</h1>
-    <form id="formulario" onsubmit="agregar(); return false;">
-        <input type="text" id="nombre" placeholder="Nombre" required>
-        <input type="text" id="apellido" placeholder="Apellido" required>
-        <input type="email" id="email" placeholder="Email" required>
-        <input type="text" id="telefono" placeholder="Teléfono" required>
-        <button type="submit">Agregar</button>
-    </form>
-    <h2>Contribuyentes Registrados</h2>
-    <table id="tablaRegistros" border="1">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Email</th>
-                <th>Teléfono</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Aquí se mostrarán los registros -->
-        </tbody>
-    </table>
-    <script>
-        // Cargar registros al cargar la página
-        obtenerRegistros();
-    </script>
+    <header>
+        <h1>Bienvenidos a la Página de Contribuyentes</h1>
+    </header>
+    <main>
+        <section class="info">
+            <h2>¿Qué es un contribuyente?</h2>
+            <p>Un contribuyente es una persona o entidad que está obligada a pagar impuestos al gobierno.</p>
+            <button id="moreInfoBtn">Más Información</button>
+            <div id="moreInfo" class="hidden">
+                <p>Los contribuyentes pueden ser individuos, empresas o cualquier otra entidad que genere ingresos.</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Contribuyentes. Todos los derechos reservados.</p>
+    </footer>
+    <script src="script.js"></script>
 </body>
 </html>
