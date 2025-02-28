@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Contribuyentes</title>
     <script>
-        const API_URL = 'https://script.google.com/macros/s/AKfycbwZXPRy1V7pAB2gXMJ9cCB29eZRtPlC-oCeVngTaix_eB0lAXENZXy8YmZxxJ_njzb-/exec'; // URL de tu aplicación de Apps Script
+        const API_URL = 'https://script.google.com/macros/s/AKfycbwKSxPfog5MHWJccd_a9_XifON71cwYSTbRO2luYduknY2rXXcGnigZV03Wti9OFKJp/exec'; // Tu URL de Apps Script
         async function agregar() {
             const nombre = document.getElementById("nombre").value;
             const apellido = document.getElementById("apellido").value;
             const email = document.getElementById("email").value;
             const telefono = document.getElementById("telefono").value;
-            const response = await fetch(`${API_URL}?action=agregarRegistro&nombre=${nombre}&apellido=${apellido}&email=${email}&telefono=${telefono}`, {
+            const response = await fetch(`${API_URL}?action=agregarRegistro&nombre=${encodeURIComponent(nombre)}&apellido=${encodeURIComponent(apellido)}&email=${encodeURIComponent(email)}&telefono=${encodeURIComponent(telefono)}`, {
                 method: 'GET'
             });
             const result = await response.text();
@@ -26,7 +26,7 @@
             mostrarRegistros(registros);
         }
         function mostrarRegistros(registros) {
-            const tabla = document.getElementById("tablaRegistros");
+            const tabla = document.getElementById("tablaRegistros").getElementsByTagName('tbody')[0];
             tabla.innerHTML = ""; // Limpiar tabla antes de mostrar registros
             registros.forEach((registro, index) => {
                 const fila = document.createElement("tr");
