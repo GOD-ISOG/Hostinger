@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Contribuyentes</title>
+    <script>
+        const API_URL = 'https://script.google.com/macros/s/AKfycbyDfGIvqW0Wag0HCz1TTTqQ2EOC0gMbdtrcrPv8PgCLqZbzdEkFX-BHKrh59vJgjX2y/exec'; // Tu URL de Apps Script
+        async function agregar() {
+            const nombre = document.getElementById("nombre").value;
+            const apellido = document.getElementById("apellido").value;
+            const email = document.getElementById("email").value;
+            const telefono = document.getElementById("telefono").value;
+            const response = await fetch(`${API_URL}?action=agregarRegistro&nombre=${nombre}&apellido=${apellido}&email=${email}&telefono=${telefono}`, {
+                method: 'GET'
+            });
+            const result = await response.text();
+            alert(result);
+            document.getElementById("formulario").reset();
+        }
+        async function obtenerRegistros() {
+            const response = await fetch(`${API_URL}?action=obtenerRegistros`, {
+                method: 'GET'
+            });
+            const registros = await response.json();
+            console.log(registros);
+            // Aquí puedes agregar lógica para mostrar los registros en la página
+        }
+    </script>
+</head>
+<body>
+    <h1>Agregar Contribuyente</h1>
+    <form id="formulario" onsubmit="agregar(); return false;">
+        <input type="text" id="nombre" placeholder="Nombre" required>
+        <input type="text" id="apellido" placeholder="Apellido" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="text" id="telefono" placeholder="Teléfono" required>
+        <button type="submit">Agregar</button>
+    </form>
+    <script>
+        // Llama a obtenerRegistros() si quieres cargar los registros al cargar la página
+        // obtenerRegistros();
+    </script>
+</body>
+</html>
