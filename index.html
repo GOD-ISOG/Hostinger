@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Contribuyentes</title>
     <script>
-        const API_URL = 'https://script.google.com/macros/s/AKfycbwKSxPfog5MHWJccd_a9_XifON71cwYSTbRO2luYduknY2rXXcGnigZV03Wti9OFKJp/exec'; // Tu URL de Apps Script
+        const API_URL = 'https://script.google.com/macros/s/AKfycbyDfGIvqW0Wag0HCz1TTTqQ2EOC0gMbdtrcrPv8PgCLqZbzdEkFX-BHKrh59vJgjX2y/exec'; // Tu URL de Apps Script
         async function agregar() {
             const nombre = document.getElementById("nombre").value;
             const apellido = document.getElementById("apellido").value;
@@ -15,8 +15,9 @@
                 method: 'GET'
             });
             const result = await response.text();
-            alert(result);
+            alert(result); // Muestra el resultado de la operación
             document.getElementById("formulario").reset();
+            obtenerRegistros(); // Cargar registros después de agregar uno nuevo
         }
         async function obtenerRegistros() {
             const response = await fetch(`${API_URL}?action=obtenerRegistros`, {
