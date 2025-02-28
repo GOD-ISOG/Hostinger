@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Contribuyentes</title>
     <script>
-        const API_URL = 'https://script.google.com/macros/s/AKfycbyeruNYzAx412HJhadrHjqqCA7BxBjjttZ8kh7LRt-lgn1zBw21Si4m05F5_-7Ocv4S/exec'; // Tu URL de Apps Script
+        const API_URL = 'https://script.google.com/macros/s/AKfycbwZXPRy1V7pAB2gXMJ9cCB29eZRtPlC-oCeVngTaix_eB0lAXENZXy8YmZxxJ_njzb-/exec'; // URL de tu aplicación de Apps Script
         async function agregar() {
             const nombre = document.getElementById("nombre").value;
             const apellido = document.getElementById("apellido").value;
@@ -23,7 +23,6 @@
                 method: 'GET'
             });
             const registros = await response.json();
-            console.log(registros);
             mostrarRegistros(registros);
         }
         function mostrarRegistros(registros) {
