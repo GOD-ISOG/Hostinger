@@ -24,7 +24,16 @@
             });
             const registros = await response.json();
             console.log(registros);
-            // Aquí puedes agregar lógica para mostrar los registros en la página
+            mostrarRegistros(registros);
+        }
+        function mostrarRegistros(registros) {
+            const tabla = document.getElementById("tablaRegistros");
+            tabla.innerHTML = ""; // Limpiar tabla antes de mostrar registros
+            registros.forEach((registro, index) => {
+                const fila = document.createElement("tr");
+                fila.innerHTML = `<td>${index + 1}</td><td>${registro[0]}</td><td>${registro[1]}</td><td>${registro[2]}</td><td>${registro[3]}</td>`;
+                tabla.appendChild(fila);
+            });
         }
     </script>
 </head>
@@ -37,9 +46,24 @@
         <input type="text" id="telefono" placeholder="Teléfono" required>
         <button type="submit">Agregar</button>
     </form>
+    <h2>Contribuyentes Registrados</h2>
+    <table id="tablaRegistros" border="1">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Aquí se mostrarán los registros -->
+        </tbody>
+    </table>
     <script>
-        // Llama a obtenerRegistros() si quieres cargar los registros al cargar la página
-        // obtenerRegistros();
+        // Cargar registros al cargar la página
+        obtenerRegistros();
     </script>
 </body>
 </html>
