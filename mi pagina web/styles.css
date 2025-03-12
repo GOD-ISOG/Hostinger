@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+header {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 1.5em 0;
+}
+.catalogo {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px;
+}
+.carnet {
+    text-align: center; /* Centramos el texto dentro del carnet */
+    margin: 15px;
+}
+.carnet img {
+    width: 300px; /* Ajustamos el tamaño de la imagen */
+    height: auto; /* Mantenemos la proporción de la imagen */
+    border-radius: 10px;
+    transition: transform 0.2s; /* Añadimos una transición para la imagen */
+}
+.carnet:hover img {
+    transform: scale(1.1); /* La imagen se agranda al pasar el mouse */
+}
+footer {
+    text-align: center;
+    padding: 1.5em 0;
+    background-color: #4CAF50;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%; /* Cambiamos a 100% para que ocupe todo el ancho */
+}
